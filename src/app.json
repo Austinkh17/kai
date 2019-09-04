@@ -1,0 +1,53 @@
+{
+  "pages": [
+    {
+      "path": "pages/index",
+      "config": {
+        "navigationBarTitleText": "kai"
+      }
+    },
+    {
+      "path": "pages/canvas/index",
+      "config": {
+        "navigationBarTitleText": "canvas"
+      }
+    },
+    {
+      "path": "pages/test/test1",
+      "config": {
+        "navigationBarTitleText": "用margin/padding的百分比值实现高度自适应"
+      }
+    },
+    {
+      "path": "pages/test/test2",
+      "config": {
+        "navigationBarTitleText": "test"
+      }
+    },
+    {
+      "path": "pages/card/DrawCard",
+      "config": {
+        "navigationBarTitleText": "抽卡"
+      }
+    },
+    "pages/counter",
+    {
+      "path": "packageA/logs",
+      "subPackage": true
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "van-tag": "/vant-weapp/dist/tag/index"
+  },
+  "permission":{
+    "scope.userLocation":{
+      "desc":"请"
+    }
+  }
+}
