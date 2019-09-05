@@ -1,6 +1,15 @@
 <script>
     import './utils/wxPromise';
     export default {
+      onShow(){
+        wx.hideTabBar();
+      },
+      onLoad(){
+        wx.hideTabBar();
+      },
+      onReady(){
+        wx.hideTabBar();
+      },
       created () {
         // 调用API从本地缓存中获取数据
         const logs = wx.getStorageSync('logs') || []
@@ -10,6 +19,8 @@
         // eslint-disable-next-line
         console.log('-------小程序启动-------');
         this.checkMiniProgramVersion();
+        this.checkWXVersion();
+        this.checkReferrer();
       },
       methods:{
         // 微信小程序版本检测
@@ -38,6 +49,35 @@
             }
           });
         },
+        // 微信版本检测
+        checkWXVersion() {
+          let that = this;
+          wx.getSystemInfo({
+            success: function(res) {
+              console.log('this is getSystemInfo brand品牌: ',res.brand);
+              console.log('this is getSystemInfo model型号: ',res.model);
+              console.log('this is getSystemInfo version: ',res.version);
+              console.log('this is getSystemInfo system: ',res.system);
+              // 微信7.0.0版本才支持单页面隐藏导航条
+              // 微信6.6.0版本才支持所有页面隐藏导航条
+              res.model.includes('iPhone X') && this.$store.commit('isIphoneX',true);
+              let isIphone = (res.system[0] === 'i');
+              if (parseInt(res.version[0]) >= 7) {
+                // that.$store.commit('updateNavbarStatus', {hideNavBar: true, statusBarHeight: res.statusBarHeight, isIphone: isIphone});
+              }
+              // 开发者工具的版本号显示不是7.0.0也隐藏原生头部
+              if (res.platform === 'devtools') {
+                // that.$store.commit('updateNavbarStatus', {hideNavBar: true, statusBarHeight: res.statusBarHeight, isIphone: isIphone});
+              }
+            }
+          });
+        },
+        checkReferrer(){
+          let obj = wx.getLaunchOptionsSync();
+          console.log('this is 场景值: ',obj.scene);
+          console.log('this is 转发信息: ',obj.shareTicket);
+          obj.referrerInfo && obj.referrerInfo.appId && (console.log('this is 来源信息: ',obj.referrerInfo.appId));
+        }
       }
     }
 </script>

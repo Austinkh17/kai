@@ -1,6 +1,10 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
-
+      <nav-bar :title="'videoTitle'"
+                      :navBackgroundColor="'pink'"
+                      :titleColor="'green'"
+                      :back-visible="true"
+                      :home-path="'/pages/index'"></nav-bar>
     <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
       <div class="userinfo-nickname">
@@ -24,11 +28,14 @@
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
     </form>
     <a href="/pages/test/test1" class="counter">去往Vuex示例页面</a>
+      <tab-bar :selectNavIndex="2"></tab-bar>
   </div>
 </template>
 
 <script>
 import card from '@/components/card'
+import tabBar from '@/components/tabBar'
+import navBar from '@/components/navBar'
 
 export default {
   mpType: 'page',
@@ -41,9 +48,19 @@ export default {
   },
 
   components: {
-    card
+    card,
+    tabBar,
+    navBar
   },
-
+  onShow(){
+    wx.hideTabBar();
+  },
+  onLoad(){
+    wx.hideTabBar();
+  },
+  onReady(){
+    wx.hideTabBar();
+  },
   methods: {
     bindViewTap () {
       const url = '/packageA/logs'

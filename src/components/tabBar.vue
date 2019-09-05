@@ -1,0 +1,161 @@
+<template>
+    <div class="tabbar-wrap" :class="isIphoneX? 'isIphoneX':''">
+        <ul class="tabbar">
+            <li class="tabbar-item" v-for="(item, index) in navList"
+                :key="index"
+                @click="selectNavItem(index, item.pagePath)"
+                :class="item.isSpecial ? 'wrapSpecial':''">
+                <p class="tabbar-icon" >
+                    <img alt="tabbar-icon"
+                         :src="selectNavIndex === index? item.selectedIconPath : item.iconPath"
+                         :class="item.isSpecial ? 'imgSpecial':''"
+                    >
+                </p>
+                <p class="tabbar-text" :class="selectNavIndex === index? 'active':''">
+                    {{item.text}}
+                </p>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<script>
+  export default {
+    name: "tabBar",
+    props: {
+      selectNavIndex: {
+        type: Number,
+        default: 0
+      }
+    },
+    components: {},
+    data() {
+      return {
+        color: "#979795",
+        selectedColor: "#45b7af",
+        navList: [
+          {
+            pagePath: "/pages/canvas/index",
+            iconPath: "/static/images/tabbar/tabbar1-1.png",
+            selectedIconPath: "/static/images/tabbar/tabbar1-1-selected.png",
+            text: "首页"
+          },
+          {
+            pagePath: "/pages/test/test2",
+            iconPath: "/static/images/icon-add.png",
+            isSpecial: true,
+            text: "记账"
+          },
+          {
+            pagePath: "/pages/index",
+            iconPath: "/static/images/tabbar/tabbar5-5.png",
+            selectedIconPath: "/static/images/tabbar/tabbar5-5-selected.png",
+            text: "我的"
+          }
+        ]
+      };
+    },
+    watch: {
+      data: {
+        handler(newValue, oldValue) {
+          console.log("this is watching data:", newValue, oldValue);
+        },
+        //deep:true,
+        immediate: true
+      }
+    },
+    computed: {
+      isIphoneX(){
+        return this.$store.state.isIphoneX
+      }
+    },
+    methods: {
+      /**
+       * 点击导航栏
+       */
+      selectNavItem(index, pagePath) {
+        if (index === this.selectNavIndex) {
+          return false;
+        }
+        this.selectNavIndex = index;
+        this.bindNavigateTo(pagePath);
+      },
+
+      /**
+       * 路由跳转
+       */
+      bindNavigateTo(url) {
+        wx.switchTab({
+          url
+        })
+      }
+    },
+    mounted() {
+      console.log("this is mounted:", this.data);
+    },
+    onShow() {
+      console.log("this is onShow:", this.data);
+    },
+    onUnload() {
+      this.data = "";
+      console.log("this is onUnload:", this.data);
+    }
+  };
+</script>
+
+<style lang="less" scoped>
+    .tabbar-wrap  {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 46px;
+        width: 100%;
+        padding-top: 3px;
+        box-shadow: 0 0 1px #C4C4C4;
+        &.isIphoneX {
+        padding-bottom: 16.5px;
+    }
+        .tabbar  {
+         display: flex;
+            .tabbar-item {
+                flex: 1;
+                .tabbar-icon {
+                    height: 28px;
+                    text-align: center;
+                    position: relative;
+                    img  {
+                        width: 28px;
+                        height: 28px;
+                        &.imgSpecial {
+                            width: 42px;
+                            height: 42px;
+                        }
+                    }
+            }.tabbar-text {
+                 text-align: center;
+                 line-height: 18px;
+                 color: #979795;
+                 font-size: 11px; &.active {
+                    color: #45b7af;
+                }
+             }&.wrapSpecial {
+                  .tabbar-icon {
+                      position: absolute;
+                      top: -18px;
+                      width: 42px;
+                      height: 42px;
+                      padding: 3px;
+                      left: 50%;
+                      margin-left: -((42px + 3px * 2 )/ 2);
+                      border-radius: 50%;
+                      border-top: 1px solid #C4C4C4;
+                      text-align: center;
+                  }.tabbar-text {
+                       position: relative;
+                       bottom: -28px;
+                   }
+              }
+        }
+     }
+    }
+</style>
