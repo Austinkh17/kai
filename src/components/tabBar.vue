@@ -108,47 +108,47 @@
         position: fixed;
         bottom: 0;
         left: 0;
-        height: 46px;
+        height: calc(92vmin / 7.5);
         width: 100%;
-        padding-top: 3px;
-        box-shadow: 0 0 1px #C4C4C4;
+        padding-top: calc(6vmin / 7.5);
+        box-shadow: 0 0 calc(2vmin / 7.5) #C4C4C4;
         &.isIphoneX {
-        padding-bottom: 16.5px;
+        padding-bottom: calc(33vmin / 7.5);
     }
         .tabbar  {
          display: flex;
             .tabbar-item {
                 flex: 1;
                 .tabbar-icon {
-                    height: 28px;
+                    height: calc(56vmin / 7.5);
                     text-align: center;
                     position: relative;
                     img  {
-                        width: 28px;
-                        height: 28px;
+                        width: calc(56vmin / 7.5);
+                        height: calc(56vmin / 7.5);
                         &.imgSpecial {
-                            width: 42px;
-                            height: 42px;
+                            width: calc(84vmin / 7.5);
+                            height: calc(84vmin / 7.5);
                         }
                     }
             }.tabbar-text {
                  text-align: center;
-                 line-height: 18px;
+                 line-height: calc(36vmin / 7.5);
                  color: #979795;
-                 font-size: 11px; &.active {
+                 font-size: calc(22vmin / 7.5); &.active {
                     color: #45b7af;
                 }
              }&.wrapSpecial {
                   .tabbar-icon {
                       position: absolute;
                       top: -18px;
-                      width: 42px;
-                      height: 42px;
+                      width: calc(84vmin / 7.5);
+                      height: calc(84vmin / 7.5);
                       padding: 3px;
                       left: 50%;
-                      margin-left: -((42px + 3px * 2 )/ 2);
+                      margin-left: -(( 42px + 3px * 2 )/ 2);
                       border-radius: 50%;
-                      border-top: 1px solid #C4C4C4;
+                      border-top: calc(2vmin / 7.5) solid #C4C4C4;
                       text-align: center;
                   }.tabbar-text {
                        position: relative;

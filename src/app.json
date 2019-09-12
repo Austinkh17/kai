@@ -8,6 +8,13 @@
       }
     },
     {
+      "path": "pages/comment/index",
+      "config": {
+        "navigationBarTitleText": "comment",
+        "navigationStyle":"custom"
+      }
+    },
+    {
       "path": "pages/canvas/index",
       "config": {
         "navigationBarTitleText": "canvas"
@@ -22,7 +29,8 @@
     {
       "path": "pages/test/test2",
       "config": {
-        "navigationBarTitleText": "test"
+        "navigationBarTitleText": "视频",
+        "navigationStyle":"custom"
       }
     },
     {
