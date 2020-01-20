@@ -34,6 +34,13 @@
       }
     },
     {
+      "path": "pages/video/index",
+      "config": {
+        "navigationBarTitleText": "视频",
+        "navigationStyle":"custom"
+      }
+    },
+    {
       "path": "pages/card/DrawCard",
       "config": {
         "navigationBarTitleText": "抽卡"

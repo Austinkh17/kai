@@ -29,7 +29,7 @@
     data() {
       return {
         btnWord:'',
-        isCompose:false,
+        isCompose: false,
         list:[
           '/static/images/defaul-head-image.png',
           '/static/images/pc-bg.png',
