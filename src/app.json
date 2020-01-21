@@ -34,9 +34,23 @@
       }
     },
     {
+      "path": "pages/login/login",
+      "config": {
+        "navigationBarTitleText": "登录",
+        "navigationStyle":"custom"
+      }
+    },
+    {
       "path": "pages/video/index",
       "config": {
         "navigationBarTitleText": "视频",
+        "navigationStyle":"custom"
+      }
+    },
+    {
+      "path": "pages/video/upload",
+      "config": {
+        "navigationBarTitleText": "视频上传",
         "navigationStyle":"custom"
       }
     },
@@ -59,19 +73,19 @@
     "borderStyle": "black",
     "list": [
       {
-        "pagePath": "pages/canvas/index",
+        "pagePath": "pages/video/index",
         "iconPath": "static/images/tabbar/tabbar1-1.png",
         "selectedIconPath": "static/images/tabbar/tabbar1-1-selected.png",
         "text": "首页"
       },
       {
-        "pagePath": "pages/test/test2",
+        "pagePath": "pages/video/upload",
         "iconPath": "static/images/icon-add.png",
         "isSpecial": true,
         "text": "记账"
       },
       {
-        "pagePath": "pages/index",
+        "pagePath": "pages/login/login",
         "iconPath": "static/images/tabbar/tabbar5-5.png",
         "selectedIconPath": "static/images/tabbar/tabbar5-5-selected.png",
         "text": "我的"
@@ -86,7 +100,9 @@
     "pageOrientation": "auto"
   },
   "usingComponents": {
-    "van-tag": "/vant-weapp/dist/tag/index"
+    "van-tag": "/vant-weapp/dist/tag/index",
+    "van-field": "/vant-weapp/dist/field/index",
+    "van-cell-group": "/vant-weapp/dist/cell-group/index"
   },
   "permission":{
     "scope.userLocation":{

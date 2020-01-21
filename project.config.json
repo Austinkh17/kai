@@ -48,5 +48,6 @@
 				}
 			]
 		}
-	}
+	},
+    "cloudfunctionRoot": "./cloud_function"
 }

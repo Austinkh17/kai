@@ -3,7 +3,7 @@
         <ul class="tabbar">
             <li class="tabbar-item" v-for="(item, index) in navList"
                 :key="index"
-                @click="selectNavItem(index, item.pagePath)"
+                @click="selectNavItem(index)"
                 :class="item.isSpecial ? 'wrapSpecial':''">
                 <p class="tabbar-icon" >
                     <img alt="tabbar-icon"
@@ -26,33 +26,17 @@
       selectNavIndex: {
         type: Number,
         default: 0
+      },
+      navList: {
+        type: Array,
+        default: () => []
       }
     },
     components: {},
     data() {
       return {
         color: "#979795",
-        selectedColor: "#45b7af",
-        navList: [
-          {
-            pagePath: "/pages/canvas/index",
-            iconPath: "/static/images/tabbar/tabbar1-1.png",
-            selectedIconPath: "/static/images/tabbar/tabbar1-1-selected.png",
-            text: "首页"
-          },
-          {
-            pagePath: "/pages/test/test2",
-            iconPath: "/static/images/icon-add.png",
-            isSpecial: true,
-            text: "记账"
-          },
-          {
-            pagePath: "/pages/index",
-            iconPath: "/static/images/tabbar/tabbar5-5.png",
-            selectedIconPath: "/static/images/tabbar/tabbar5-5-selected.png",
-            text: "我的"
-          }
-        ]
+        selectedColor: "#45b7af"
       };
     },
     watch: {
@@ -62,7 +46,13 @@
         },
         //deep:true,
         immediate: true
-      }
+      },
+      selectNavIndex: {
+        handler(val) {
+          this.bindNavigateTo(this.navList[val].pagePath);
+        },
+        immediate: true
+      },
     },
     computed: {
       isIphoneX(){
@@ -73,12 +63,11 @@
       /**
        * 点击导航栏
        */
-      selectNavItem(index, pagePath) {
+      selectNavItem(index) {
         if (index === this.selectNavIndex) {
           return false;
         }
         this.selectNavIndex = index;
-        this.bindNavigateTo(pagePath);
       },
 
       /**

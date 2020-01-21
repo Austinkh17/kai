@@ -5,30 +5,7 @@
                       :titleColor="'green'"
                       :back-visible="true"
                       :home-path="'/pages/index'"></nav-bar>
-    <div class="userinfo" @click="bindViewTap">
-      <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
-      <div class="userinfo-nickname">
-        <card :text="userInfo.nickName"></card>
-      </div>
-    </div>
-
-    <van-tag>标签</van-tag>
-    <van-tag type="danger">标签</van-tag>
-    <van-tag type="primary">标签</van-tag>
-    <van-tag type="success">标签</van-tag>
-
-    <div class="usermotto">
-      <div class="user-motto">
-        <card :text="motto"></card>
-      </div>
-    </div>
-
-    <form class="form-container">
-      <input type="text" class="form-control" v-model="motto" placeholder="v-model" />
-      <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
-    </form>
-    <a href="/pages/test/test1" class="counter">去往Vuex示例页面</a>
-      <tab-bar :selectNavIndex="2"></tab-bar>
+      <tab-bar :selectNavIndex="0" :navList="navList"></tab-bar>
   </div>
 </template>
 
@@ -36,6 +13,7 @@
 import card from '@/components/card'
 import tabBar from '@/components/tabBar'
 import navBar from '@/components/navBar'
+import video from './video'
 
 export default {
   mpType: 'page',
@@ -43,14 +21,34 @@ export default {
   data () {
     return {
       motto: 'Hello World',
-      userInfo: {}
+      userInfo: {},
+      navList: [
+        {
+          pagePath: "/pages/video/index",
+          iconPath: "/static/images/tabbar/tabbar1-1.png",
+          selectedIconPath: "/static/images/tabbar/tabbar1-1-selected.png",
+          text: "首页"
+        },
+        {
+          pagePath: "/pages/video/upload",
+          iconPath: "/static/images/icon-add.png",
+          isSpecial: true,
+          text: "记"
+        },
+        {
+          pagePath: "pages/login/login",
+          iconPath: "/static/images/tabbar/tabbar5-5.png",
+          selectedIconPath: "/static/images/tabbar/tabbar5-5-selected.png",
+          text: "我的"
+        }
+      ]
     }
   },
-
   components: {
     card,
     tabBar,
-    navBar
+    navBar,
+    video
   },
   onShow(){
     wx.hideTabBar();
